@@ -2,68 +2,47 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 IMPERO TIGROTTA: GHOST MODE 👑</title>
+    <title>👑 REGNO TIGROTTA 👑</title>
     <style>
-        body { margin: 0; background: #000 url('https://wallpapercave.com/wp/wp4033324.jpg') no-repeat center center fixed; background-size: cover; color: #eee; font-family: sans-serif; height: 100vh; display: flex; overflow: hidden; }
+        body { margin: 0; background: #000; color: #eee; font-family: sans-serif; height: 100vh; display: flex; overflow: hidden; }
         
-        /* COLONNA SINISTRA: BOSS + CHATTINA GHOST PRIVATA */
-        #col-left { width: 280px; background: rgba(10, 10, 10, 0.95); border-right: 2px solid #ff00ff; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; }
-        .input-boss { width: 100%; padding: 10px; margin-bottom: 8px; background: #111; border: 1px solid #ff00ff; color: #ff00ff; border-radius: 5px; font-weight: bold; }
+        /* COLONNA SINISTRA: SOLO LA CHATTINA PRIVATA */
+        #col-privata { width: 280px; background: #0a0a0a; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; padding: 5px; box-sizing: border-box; }
         
-        /* BOX CHATTINA GHOST (Privata e Leggera) */
-        #box-ghost { flex: 1; border: 1px solid #00f2ff; border-radius: 8px; overflow: hidden; margin-top: 10px; background: #000; }
+        /* COLONNA CENTRALE: CHAT PER GLI AMICI */
+        #col-main { flex: 1; display: flex; flex-direction: column; background: #050505; }
+        .testata { padding: 10px; background: #111; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.8em; }
 
-        /* CENTRO: CHAT PRINCIPALE (ARENA) */
-        #col-main { flex: 1; display: flex; flex-direction: column; }
-        .header { padding: 10px; background: rgba(20, 20, 20, 0.9); text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.8em; }
+        /* COLONNA DESTRA: CAM E YOUTUBE */
+        #col-right { width: 360px; background: #0a0a0a; border-left: 2px solid #00f2ff; display: flex; flex-direction: column; padding: 10px; align-items: center; box-sizing: border-box; }
+        .cam-frame { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+        .yt-frame { width: 330px; aspect-ratio: 16/9; border: 1px solid #00f2ff; border-radius: 5px; overflow: hidden; }
 
-        /* DESTRA: VIDEO */
-        #col-right { width: 360px; background: rgba(10, 10, 10, 0.9); border-left: 2px solid #00f2ff33; display: flex; flex-direction: column; padding: 10px; align-items: center; box-sizing: border-box; }
-        .square-video { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; }
-        
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <div id="col-left">
-        <div class="header">👑 BOSS PANEL</div>
-        <input type="text" id="stanza" class="input-boss" placeholder="Nome Stanza...">
-        <button class="input-boss" style="background:#ff00ff; color:white; cursor:pointer;" onclick="vai()">CAMBIA CAM</button>
-        
-        <div class="header" style="color:#00f2ff; margin-top:10px;">👻 CHATTINA GHOST (PRIVATA)</div>
-        <div id="box-ghost">
-            <iframe id="iframe-ghost" src="https://minnit.chat/TigrottaGhost?embed&&nickname="></iframe>
-        </div>
+    <div id="col-privata">
+        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
     <div id="col-main">
-        <div class="header">🏟️ ARENA: CHAT PER GLI AMICI</div>
+        <div class="testata">🏟️ CHAT PER GLI AMICI</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
     <div id="col-right">
-        <div class="header">🔳 CAM VIDEO</div>
-        <div class="square-video">
-            <iframe id="iframe-cam" src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
+        <div class="testata" style="margin-bottom:5px;">🔳 VIDEO CAM</div>
+        <div class="cam-frame">
+            <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
-        <div class="header" style="color:#00f2ff; width:100%; margin-top:10px;">📺 YOUTUBE</div>
-        <div style="width:330px; aspect-ratio:16/9; border:1px solid #00f2ff; border-radius:5px; overflow:hidden;">
-            <iframe src="https://www.youtube.com/embed/21X5lGlDOfg"></iframe>
+        
+        <div class="testata" style="color:#00f2ff; margin-bottom:5px;">📺 YOUTUBE</div>
+        <div class="yt-frame">
+            <iframe src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
         </div>
     </div>
 
-    <script>
-        function vai() {
-            var n = document.getElementById('stanza').value.trim();
-            if(n) {
-                var clean = n.replace(/\s+/g, '');
-                document.getElementById('iframe-cam').src = "https://meet.jit.si/" + clean;
-                // Aggiorna anche la ghost per sicurezza
-                document.getElementById('iframe-ghost').src = "https://minnit.chat/TigrottaGhost?embed&&nickname=";
-                document.getElementById('stanza').value = "";
-            }
-        }
-    </script>
 </body>
 </html>
