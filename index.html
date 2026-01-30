@@ -1,72 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>IMPERO TIGROTTA</title>
+    <title>👑 IMPERO TIGROTTA 👑</title>
     <style>
+        /* Struttura base */
         html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: sans-serif; overflow: hidden; }
-        .container { display: flex; width: 100%; height: 100vh; }
+        #wrapper { display: flex; width: 100vw; height: 100vh; }
 
-        /* SINISTRA: CHATTINA PRIVATA - Allargata per lista utenti */
-        .col-left { width: 320px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
+        /* COLONNA SINISTRA: NUOVA PRIVATA */
+        #privata { width: 320px; background: #0a0a0a; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; }
         
-        /* CENTRO: ARENA PRINCIPALE */
-        .col-center { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; background: #050505; }
+        /* COLONNA CENTRALE: ARENA STORICA */
+        #arena { flex: 1; background: #050505; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; }
         
-        /* DESTRA: VIDEO */
-        .col-right { width: 360px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; align-items: center; }
+        /* COLONNA DESTRA: MEDIA */
+        #media { width: 360px; background: #0a0a0a; display: flex; flex-direction: column; padding: 10px; align-items: center; box-sizing: border-box; }
 
-        .titolo { padding: 8px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; font-size: 11px; border-bottom: 1px solid #333; text-transform: uppercase; }
+        /* Intestazioni */
+        .header { padding: 10px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 11px; width: 100%; box-sizing: border-box; }
         
-        .cam-video { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
-        .yt-video { width: 330px; height: 185px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; }
+        /* Box Media */
+        .cam-frame { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; margin-bottom: 15px; background: #000; }
+        .yt-frame { width: 330px; height: 185px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; background: #000; }
         
-        .input-area { padding: 10px; display: flex; gap: 5px; width: 100%; box-sizing: border-box; }
-        input { flex: 1; background: #000; border: 1px solid #00f2ff; color: #fff; padding: 8px; border-radius: 4px; }
-        button { background: #00f2ff; border: none; color: #000; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 4px; }
+        /* Input YouTube */
+        .yt-input { width: 330px; margin-top: 10px; display: flex; gap: 5px; }
+        .yt-input input { flex: 1; background: #111; border: 1px solid #00f2ff; color: #fff; padding: 8px; border-radius: 4px; }
+        .yt-input button { background: #00f2ff; border: none; color: #000; font-weight: bold; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
 
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="col-left">
-            <div class="titolo" style="color:#00f2ff">🔐 CHATTINA PRIVATA</div>
-            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=main"></iframe>
+    <div id="wrapper">
+        <div id="privata">
+            <div class="header" style="color:#00f2ff;">🔐 CHATTINA PRIVATA</div>
+            <iframe src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav" allowtransparency="yes" allow="autoplay"></iframe>
         </div>
 
-        <div id="col-center" class="col-center">
-            <div class="titolo">🏟️ ARENA PRINCIPALE</div>
-            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
+        <div id="arena">
+            <div class="header">🏟️ ARENA AMICI</div>
+            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3" allowtransparency="yes" allow="autoplay"></iframe>
         </div>
 
-        <div class="col-right">
-            <div class="titolo" style="width:100%">🔳 LIVE CAM</div>
-            <div class="cam-video">
+        <div id="media">
+            <div class="header">🔳 VIDEO CAM</div>
+            <div class="cam-frame">
                 <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
             </div>
             
-            <div class="titolo" style="color:#00f2ff; width:100%">📺 YOUTUBE DJ</div>
-            <div class="yt-video">
-                <iframe id="yt-play" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
+            <div class="header" style="color:#00f2ff;">📺 YOUTUBE PLAYER</div>
+            <div class="yt-frame">
+                <iframe id="main-yt" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
             </div>
-            <div class="input-area">
+            <div class="yt-input">
                 <input type="text" id="yt-url" placeholder="Incolla link video...">
-                <button onclick="cambia()">OK</button>
+                <button onclick="changeVideo()">OK</button>
             </div>
         </div>
     </div>
 
     <script>
-        function cambia() {
-            var val = document.getElementById('yt-url').value;
+        function changeVideo() {
+            var url = document.getElementById('yt-url').value;
             var id = "";
-            if(val.includes('v=')) { id = val.split('v=')[1].split('&')[0]; }
-            else if(val.includes('youtu.be/')) { id = val.split('/').pop().split('?')[0]; }
-            else { id = val; }
-            if(id) { document.getElementById('yt-play').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
+            if (url.includes("v=")) { id = url.split("v=")[1].split("&")[0]; }
+            else if (url.includes("youtu.be/")) { id = url.split("/").pop().split("?")[0]; }
+            else { id = url; }
+            if (id) { document.getElementById('main-yt').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
         }
     </script>
+
 </body>
 </html>
