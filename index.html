@@ -2,64 +2,61 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 REGNO TIGROTTA: CHAT PER GLI AMICI 👑</title>
+    <title>👑 REGNO TIGROTTA 👑</title>
     <style>
-        body { margin: 0; background: #000; color: #eee; font-family: sans-serif; height: 100vh; display: flex; overflow: hidden; }
+        body { margin: 0; background: #000 url('https://wallpapercave.com/wp/wp4033324.jpg') no-repeat center center fixed; background-size: cover; color: #eee; font-family: sans-serif; height: 100vh; display: flex; overflow: hidden; }
         
-        /* SINISTRA: BOSS PANEL + CHATTINA GHOST */
-        #side-left { width: 260px; background: #0a0a0a; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; padding: 10px; }
-        .btn-boss { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #ff00ff; color: #ff00ff; border-radius: 5px; font-weight: bold; font-size: 0.8em; }
-        #ghost-space { flex: 1; border: 1px solid #00f2ff; border-radius: 5px; overflow: hidden; background: #000; }
+        /* SINISTRA: COMANDI + CHATTINA PRIVATA */
+        #col-sinistra { width: 260px; background: rgba(10, 10, 10, 0.95); border-right: 2px solid #ff00ff; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; }
+        .input-boss { width: 100%; padding: 10px; margin-bottom: 8px; background: #111; border: 1px solid #ff00ff; color: #ff00ff; border-radius: 5px; font-weight: bold; }
+        #box-chattina { flex: 1; border: 1px solid #00f2ff; border-radius: 8px; overflow: hidden; margin-top: 10px; background: #000; }
 
-        /* CENTRO: LA TUA NUOVA CHAT "CHATPERGLIAMICI" */
-        #main-center { flex: 1; display: flex; flex-direction: column; background: #050505; }
-        .label { padding: 10px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.75em; }
+        /* CENTRO: CHAT PRINCIPALE */
+        #col-centro { flex: 1; display: flex; flex-direction: column; }
+        .header { padding: 10px; background: rgba(20, 20, 20, 0.9); text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.8em; }
 
-        /* DESTRA: CAM QUADRATA + YT */
-        #side-right { width: 360px; background: #0a0a0a; border-left: 2px solid #00f2ff; display: flex; flex-direction: column; padding: 10px; align-items: center; }
-        .cam-square { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; background: #000; }
+        /* DESTRA: CAM QUADRATA */
+        #col-destra { width: 360px; background: rgba(10, 10, 10, 0.9); border-left: 2px solid #00f2ff33; display: flex; flex-direction: column; padding: 10px; align-items: center; box-sizing: border-box; }
+        .square-video { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; }
         
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <div id="side-left">
-        <div class="label">👑 BOSS PANEL</div>
-        <input type="text" id="room-name" class="btn-boss" placeholder="Nome Stanza...">
-        <button class="btn-boss" style="background:#ff00ff; color:#fff; cursor:pointer;" onclick="change()">CAMBIA STANZA</button>
+    <div id="col-sinistra">
+        <div class="header">👑 BOSS PANEL</div>
+        <input type="text" id="stanza" class="input-boss" placeholder="Nome Stanza...">
+        <button class="input-boss" style="background:#ff00ff; color:white; cursor:pointer;" onclick="vai()">CAMBIA CAM</button>
         
-        <div class="label" style="color:#00f2ff; margin-top:5px;">👻 CHATTINA GHOST</div>
-        <div id="ghost-space">
-            <iframe id="ghost-if" src="https://tlk.io/chatpergliamici-ghost"></iframe>
+        <div class="header" style="color:#00f2ff; margin-top:10px;">💬 CHATTINA</div>
+        <div id="box-chattina">
+            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
         </div>
     </div>
 
-    <div id="main-center">
-        <div class="label">🏟️ ARENA: CHAT PER GLI AMICI</div>
-        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=main"></iframe>
+    <div id="col-centro">
+        <div class="header">🏟️ CHAT PER GLI AMICI</div>
+        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
-    <div id="side-right">
-        <div class="label">🔳 CAM VIDEO</div>
-        <div class="cam-square">
-            <iframe id="cam-if" src="https://meet.jit.si/chatpergliamici" allow="camera; microphone"></iframe>
+    <div id="col-destra">
+        <div class="header">🔳 CAM VIDEO</div>
+        <div class="square-video">
+            <iframe id="iframe-cam" src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
-        
-        <div class="label" style="color:#00f2ff; width:100%; margin-top:10px;">📺 YOUTUBE</div>
-        <div style="width:330px; height:185px; border:1px solid #00f2ff; border-radius:5px; overflow:hidden;">
+        <div class="header" style="color:#00f2ff; width:100%; margin-top:10px;">📺 YOUTUBE</div>
+        <div style="width:330px; aspect-ratio:16/9; border:1px solid #00f2ff; border-radius:5px; overflow:hidden;">
             <iframe src="https://www.youtube.com/embed/21X5lGlDOfg"></iframe>
         </div>
     </div>
 
     <script>
-        function change() {
-            var val = document.getElementById('room-name').value.trim();
-            if(val) {
-                var clean = val.replace(/\s+/g, '');
-                document.getElementById('cam-if').src = "https://meet.jit.si/" + clean;
-                document.getElementById('ghost-if').src = "https://tlk.io/" + clean + "-ghost";
-                document.getElementById('room-name').value = "";
+        function vai() {
+            var n = document.getElementById('stanza').value.trim();
+            if(n) {
+                document.getElementById('iframe-cam').src = "https://meet.jit.si/" + n.replace(/\s+/g, '');
+                document.getElementById('stanza').value = "";
             }
         }
     </script>
