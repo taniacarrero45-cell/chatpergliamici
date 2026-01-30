@@ -2,60 +2,54 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>IMPERO</title>
+    <title>IMPERO TIGROTTA</title>
     <style>
         html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: sans-serif; overflow: hidden; }
-        
-        /* Layout a 3 colonne fisso */
         .container { display: flex; width: 100%; height: 100vh; }
 
-        /* SINISTRA: CHAT FANTASMA */
-        .col-left { width: 250px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #111; }
+        /* SINISTRA: CHATTINA PRIVATA - Allargata per lista utenti */
+        .col-left { width: 320px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
         
-        /* CENTRO: ARENA */
-        .col-center { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; }
+        /* CENTRO: ARENA PRINCIPALE */
+        .col-center { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; background: #050505; }
         
         /* DESTRA: VIDEO */
-        .col-right { width: 360px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #111; }
+        .col-right { width: 360px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; align-items: center; }
 
-        .titolo { padding: 10px; background: #222; text-align: center; color: #ff00ff; font-weight: bold; font-size: 12px; border-bottom: 1px solid #333; }
+        .titolo { padding: 8px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; font-size: 11px; border-bottom: 1px solid #333; text-transform: uppercase; }
         
-        .cam-video { width: 330px; height: 330px; border: 2px solid #ff00ff; margin-bottom: 10px; background: #000; }
-        .yt-video { width: 330px; height: 185px; border: 2px solid #00f2ff; background: #000; }
+        .cam-video { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+        .yt-video { width: 330px; height: 185px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; }
         
-        .input-area { padding: 10px; display: flex; gap: 5px; }
-        input { flex: 1; background: #000; border: 1px solid #ff00ff; color: #fff; padding: 5px; }
-        button { background: #ff00ff; border: none; color: #fff; padding: 5px 10px; cursor: pointer; }
+        .input-area { padding: 10px; display: flex; gap: 5px; width: 100%; box-sizing: border-box; }
+        input { flex: 1; background: #000; border: 1px solid #00f2ff; color: #fff; padding: 8px; border-radius: 4px; }
+        button { background: #00f2ff; border: none; color: #000; padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 4px; }
 
         iframe { width: 100%; height: 100%; border: none; }
-        #ghost-box { flex: 1; padding: 10px; overflow-y: auto; color: #00f2ff; font-size: 13px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="col-left">
-            <div class="titolo">👻 PRIVATA</div>
-            <div id="ghost-box">Benvenuta Boss.</div>
-            <div class="input-area">
-                <input type="text" id="g-in" placeholder="Scrivi..." onkeypress="if(event.key==='Enter') manda()">
-            </div>
+            <div class="titolo" style="color:#00f2ff">🔐 CHATTINA PRIVATA</div>
+            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=main"></iframe>
         </div>
 
-        <div class="col-center">
-            <div class="titolo">🏟️ ARENA AMICI</div>
+        <div id="col-center" class="col-center">
+            <div class="titolo">🏟️ ARENA PRINCIPALE</div>
             <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
         </div>
 
         <div class="col-right">
-            <div class="titolo">🔳 CAM</div>
+            <div class="titolo" style="width:100%">🔳 LIVE CAM</div>
             <div class="cam-video">
-                <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone"></iframe>
+                <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
             </div>
             
-            <div class="titolo" style="color:#00f2ff">📺 YOUTUBE</div>
+            <div class="titolo" style="color:#00f2ff; width:100%">📺 YOUTUBE DJ</div>
             <div class="yt-video">
-                <iframe id="yt-play" src="https://www.youtube.com/embed/21X5lGlDOfg"></iframe>
+                <iframe id="yt-play" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
             </div>
             <div class="input-area">
                 <input type="text" id="yt-url" placeholder="Incolla link video...">
@@ -65,19 +59,13 @@
     </div>
 
     <script>
-        function manda() {
-            var i = document.getElementById('g-in');
-            var b = document.getElementById('ghost-box');
-            if(i.value) {
-                b.innerHTML += "<div><b>Tu:</b> "+i.value+"</div>";
-                i.value = "";
-                b.scrollTop = b.scrollHeight;
-            }
-        }
         function cambia() {
             var val = document.getElementById('yt-url').value;
-            var id = val.includes('v=') ? val.split('v=')[1].split('&')[0] : val.split('/').pop();
-            document.getElementById('yt-play').src = "https://www.youtube.com/embed/" + id;
+            var id = "";
+            if(val.includes('v=')) { id = val.split('v=')[1].split('&')[0]; }
+            else if(val.includes('youtu.be/')) { id = val.split('/').pop().split('?')[0]; }
+            else { id = val; }
+            if(id) { document.getElementById('yt-play').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
         }
     </script>
 </body>
