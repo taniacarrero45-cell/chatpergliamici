@@ -2,27 +2,32 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 IMPERO TIGROTTA 👑</title>
+    <title>👑 IL REGNO 👑</title>
     <style>
-        html, body { margin: 0; padding: 0; height: 100%; background: #000; color: #fff; font-family: sans-serif; overflow: hidden; }
-        #wrapper { display: flex; width: 100vw; height: 100vh; }
-
-        /* SINISTRA: PRIVATA CON BOTTONI STANZE */
-        #col-privata { width: 400px; background: #0a0a0a; border-right: 3px solid #ff00ff; display: flex; flex-direction: column; }
+        /* RESET TOTALE */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #000 !important; color: white; font-family: Arial, sans-serif; overflow: hidden; }
         
-        /* BARRA DEI BOTTONI PER CAMBIARE STANZA */
-        .room-bar { display: flex; background: #151515; border-bottom: 1px solid #333; }
-        .room-btn { flex: 1; padding: 12px; border: none; background: #222; color: #00f2ff; cursor: pointer; font-weight: bold; font-size: 10px; text-transform: uppercase; border-right: 1px solid #333; }
-        .room-btn:hover { background: #00f2ff; color: #000; }
-        .room-btn.active { background: #ff00ff; color: #fff; }
+        /* LAYOUT A 3 COLONNE BLINDATO */
+        .main-wrapper { display: flex; width: 100vw; height: 100vh; background-color: #000; }
 
-        /* CENTRO: ARENA */
-        #col-arena { flex: 1; background: #050505; border-right: 3px solid #00f2ff; display: flex; flex-direction: column; }
+        /* SINISTRA (PRIVATA) */
+        .col-left { width: 380px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #111; }
         
-        /* DESTRA: MEDIA */
-        #col-media { width: 360px; background: #0a0a0a; display: flex; flex-direction: column; padding: 10px; align-items: center; box-sizing: border-box; }
+        /* CENTRO (ARENA) */
+        .col-center { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; background: #050505; }
+        
+        /* DESTRA (MEDIA) */
+        .col-right { width: 350px; display: flex; flex-direction: column; background: #111; padding: 10px; align-items: center; box-sizing: border-box; }
 
-        .header { padding: 10px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 11px; width: 100%; box-sizing: border-box; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* BARRA BOTTONI STANZE */
+        .btn-bar { display: flex; width: 100%; background: #222; }
+        .btn-bar button { flex: 1; padding: 15px 5px; cursor: pointer; background: #333; color: #00f2ff; border: 1px solid #444; font-weight: bold; text-transform: uppercase; font-size: 10px; }
+        .btn-bar button:hover { background: #ff00ff; color: #000; }
 
-        .cam-frame { width: 330px; height: 330px; border: 2px solid #ff00ff;
+        .titolo { width: 100%; padding: 10px 0; text-align: center; background: #151515; color: #ff00ff; font-weight: bold; font-size: 12px; border-bottom: 1px solid #333; }
+
+        /* VIDEO BOX */
+        .video-container { width: 320px; height: 320px; border: 2px solid #ff00ff; margin-bottom: 15px; background: #000; }
+        .yt-container { width: 320px; height: 180px; border: 2px solid #00f2ff; background: #000; }
+        
+        iframe { width: 100%; height: 100%; border
