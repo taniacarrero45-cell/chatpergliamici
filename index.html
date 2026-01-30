@@ -1,40 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>IMPERO</title>
+    <title>IMPERO TIGROTTA</title>
     <style>
-        body { margin: 0; background: #222; color: white; font-family: sans-serif; }
-        .wrap { display: flex; width: 100vw; height: 100vh; }
-        .col { border: 2px solid #444; display: flex; flex-direction: column; }
-        iframe { width: 100%; height: 100%; border: none; background: #fff; }
-        .menu { background: #333; padding: 10px; display: flex; gap: 5px; }
-        button { flex: 1; padding: 10px; cursor: pointer; background: #ff00ff; color: white; border: none; font-weight: bold; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
+        .wrapper { display: flex; width: 100%; height: 100vh; }
+        
+        /* Layout Colonne */
+        .col-privata { width: 380px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
+        .col-arena { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; background: #000; }
+        .col-media { width: 340px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; }
+
+        /* Bottoni Stanze */
+        .bar { display: flex; background: #1a1a1a; }
+        .bar button { flex: 1; padding: 12px; background: #333; color: #ff00ff; border: 1px solid #000; cursor: pointer; font-weight: bold; font-size: 10px; }
+        .bar button:hover { background: #ff00ff; color: #000; }
+
+        .titolo { padding: 8px; text-align: center; background: #111; font-weight: bold; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #333; }
+        
+        iframe { width: 100%; height: 100%; border: none; background: #000; }
+        
+        /* Media Box */
+        .box-video { width: 100%; height: 300px; border: 2px solid #ff00ff; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
+        .box-yt { width: 100%; height: 180px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; }
     </style>
 </head>
 <body>
-    <div class="wrap">
-        <div class="col" style="width: 400px;">
-            <div class="menu">
-                <button onclick="document.getElementById('c1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">PRINCIPALE</button>
-                <button onclick="document.getElementById('c1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main&chn=musica'">MUSICA</button>
-            </div>
-            <iframe id="c1" src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
-        </div>
 
-        <div class="col" style="flex: 1;">
-            <div style="padding:10px; text-align:center; background:#111;">ARENA PRINCIPALE</div>
-            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
+<div class="wrapper">
+    <div class="col-privata">
+        <div class="titolo" style="color:#00f2ff">🔐 STANZE PRIVATE</div>
+        <div class="bar">
+            <button onclick="document.getElementById('cbox1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">PRINCIPALE</button>
+            <button onclick="document.getElementById('cbox1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main&chn=musica'">MUSICA 🎵</button>
         </div>
+        <iframe id="cbox1" src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
+    </div>
 
-        <div class="col" style="width: 350px; background: #111; align-items: center; padding: 10px;">
-            <div style="width:320px; height:320px; margin-bottom:10px;">
-                <iframe src="https://meet.jit.si/chatpergliamici"></iframe>
-            </div>
-            <div style="width:320px; height:180px;">
-                <iframe src="https://www.youtube.com/embed/21X5lGlDOfg"></iframe>
-            </div>
+    <div class="col-arena">
+        <div class="titolo">🏟️ ARENA AMICI</div>
+        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
+    </div>
+
+    <div class="col-media">
+        <div class="titolo">🔳 LIVE CAM</div>
+        <div class="box-video">
+            <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
+        </div>
+        
+        <div class="titolo" style="color:#00f2ff">📺 YOUTUBE</div>
+        <div class="box-yt">
+            <iframe src="https://www.youtube.com/embed/21X5lGlDOfg"></iframe>
         </div>
     </div>
+</div>
+
 </body>
 </html>
