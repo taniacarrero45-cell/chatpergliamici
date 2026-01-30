@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 REGNO TIGROTTA 👑</title>
+    <title>👑 REGNO TIGROTTA: CHAT PER GLI AMICI 👑</title>
     <style>
         body { margin: 0; background: #000; color: #eee; font-family: sans-serif; height: 100vh; display: flex; overflow: hidden; }
         
-        /* COLONNA SINISTRA (COMANDI + GHOST) */
+        /* SINISTRA: BOSS PANEL + CHATTINA GHOST */
         #side-left { width: 260px; background: #0a0a0a; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; padding: 10px; }
-        .btn-boss { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #ff00ff; color: #ff00ff; border-radius: 5px; font-weight: bold; }
+        .btn-boss { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #ff00ff; color: #ff00ff; border-radius: 5px; font-weight: bold; font-size: 0.8em; }
         #ghost-space { flex: 1; border: 1px solid #00f2ff; border-radius: 5px; overflow: hidden; background: #000; }
 
-        /* CENTRO (CHAT CBOX) */
+        /* CENTRO: LA TUA NUOVA CHAT "CHATPERGLIAMICI" */
         #main-center { flex: 1; display: flex; flex-direction: column; background: #050505; }
-        .label { padding: 10px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.8em; }
+        .label { padding: 10px; background: #151515; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.75em; }
 
-        /* DESTRA (CAM QUADRATA) */
+        /* DESTRA: CAM QUADRATA + YT */
         #side-right { width: 360px; background: #0a0a0a; border-left: 2px solid #00f2ff; display: flex; flex-direction: column; padding: 10px; align-items: center; }
         .cam-square { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; background: #000; }
         
@@ -25,25 +25,25 @@
 <body>
 
     <div id="side-left">
-        <div class="label">👑 COMANDI</div>
+        <div class="label">👑 BOSS PANEL</div>
         <input type="text" id="room-name" class="btn-boss" placeholder="Nome Stanza...">
-        <button class="btn-boss" style="background:#ff00ff; color:#fff;" onclick="change()">CAMBIA STANZA</button>
+        <button class="btn-boss" style="background:#ff00ff; color:#fff; cursor:pointer;" onclick="change()">CAMBIA STANZA</button>
         
-        <div class="label" style="color:#00f2ff;">👻 CHATTINA GHOST</div>
+        <div class="label" style="color:#00f2ff; margin-top:5px;">👻 CHATTINA GHOST</div>
         <div id="ghost-space">
-            <iframe id="ghost-if" src="https://tlk.io/tigrotta-ghost"></iframe>
+            <iframe id="ghost-if" src="https://tlk.io/chatpergliamici-ghost"></iframe>
         </div>
     </div>
 
     <div id="main-center">
-        <div class="label">🏟️ CHAT PRINCIPALE</div>
-        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
+        <div class="label">🏟️ ARENA: CHAT PER GLI AMICI</div>
+        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=main"></iframe>
     </div>
 
     <div id="side-right">
         <div class="label">🔳 CAM VIDEO</div>
         <div class="cam-square">
-            <iframe id="cam-if" src="https://meet.jit.si/ArenaTigrotta2024" allow="camera; microphone"></iframe>
+            <iframe id="cam-if" src="https://meet.jit.si/chatpergliamici" allow="camera; microphone"></iframe>
         </div>
         
         <div class="label" style="color:#00f2ff; width:100%; margin-top:10px;">📺 YOUTUBE</div>
@@ -56,8 +56,10 @@
         function change() {
             var val = document.getElementById('room-name').value.trim();
             if(val) {
-                document.getElementById('cam-if').src = "https://meet.jit.si/" + val;
-                document.getElementById('ghost-if').src = "https://tlk.io/" + val + "-ghost";
+                var clean = val.replace(/\s+/g, '');
+                document.getElementById('cam-if').src = "https://meet.jit.si/" + clean;
+                document.getElementById('ghost-if').src = "https://tlk.io/" + clean + "-ghost";
+                document.getElementById('room-name').value = "";
             }
         }
     </script>
