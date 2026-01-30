@@ -2,74 +2,12 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 REGNO TIGROTTA 👑</title>
+    <title>👑 REGNO TIGROTTA: MULTIMEDIA 👑</title>
     <style>
         body { margin: 0; background: #000; color: #eee; font-family: sans-serif; height: 100vh; display: flex; overflow: hidden; }
         
         /* SINISTRA: CHAT FANTASMA */
         #col-ghost { width: 250px; background: #0a0a0a; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; }
-        #ghost-messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 0.9em; color: #00f2ff; }
-        #ghost-input { padding: 10px; background: #111; border-top: 1px solid #333; display: flex; }
-        #ghost-input input { flex: 1; background: #000; border: 1px solid #ff00ff; color: #fff; padding: 5px; border-radius: 3px; }
-
-        /* CENTRO: CHAT PRINCIPALE */
-        #col-main { flex: 1; display: flex; flex-direction: column; background: #050505; border-right: 2px solid #00f2ff; }
-        
-        /* DESTRA: CAM E YT */
-        #col-right { width: 360px; background: #0a0a0a; display: flex; flex-direction: column; padding: 10px; align-items: center; box-sizing: border-box; }
-        
-        .header { padding: 10px; background: #111; text-align: center; color: #ff00ff; font-weight: bold; border-bottom: 1px solid #333; text-transform: uppercase; font-size: 0.7em; }
-        .cam-frame { width: 330px; height: 330px; border: 2px solid #ff00ff; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
-        .yt-frame { width: 330px; aspect-ratio: 16/9; border: 1px solid #00f2ff; border-radius: 5px; overflow: hidden; }
-
-        iframe { width: 100%; height: 100%; border: none; }
-        .msg { margin-bottom: 8px; border-bottom: 1px solid #222; padding-bottom: 4px; }
-        .msg b { color: #ff00ff; }
-    </style>
-</head>
-<body>
-
-    <div id="col-ghost">
-        <div class="header" style="color:#00f2ff;">👻 GHOST CHAT</div>
-        <div id="ghost-messages">
-            <div class="msg"><b>Sistema:</b> Chat privata attiva. I messaggi svaniscono al refresh.</div>
-        </div>
-        <div id="ghost-input">
-            <input type="text" id="g-msg" placeholder="Scrivi qui..." onkeypress="if(event.key === 'Enter') sendGhost()">
-        </div>
-    </div>
-
-    <div id="col-main">
-        <div class="header">🏟️ ARENA AMICI</div>
-        <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
-    </div>
-
-    <div id="col-right">
-        <div class="header" style="width:100%; margin-bottom:5px;">🔳 VIDEO CAM</div>
-        <div class="cam-frame">
-            <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
-        </div>
-        
-        <div class="header" style="color:#00f2ff; width:100%; margin-bottom:5px;">📺 YOUTUBE</div>
-        <div class="yt-frame">
-            <iframe src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <script>
-        function sendGhost() {
-            const input = document.getElementById('g-msg');
-            const box = document.getElementById('ghost-messages');
-            if(input.value.trim() !== "") {
-                const newMsg = document.createElement('div');
-                newMsg.className = 'msg';
-                newMsg.innerHTML = `<b>Tu:</b> ${input.value}`;
-                box.appendChild(newMsg);
-                box.scrollTop = box.scrollHeight;
-                input.value = "";
-            }
-        }
-    </script>
-
-</body>
-</html>
+        #ghost-messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 0.9em; color: #00f2ff; background: #000; }
+        .g-input { padding: 10px; background: #111; border-top: 1px solid #333; }
+        .g-input input { width: 100%; background: #000; border: 1px solid #ff00ff; color: #fff; padding: 8px; border-
