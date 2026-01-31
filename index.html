@@ -2,74 +2,87 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 IMPERO TIGROTTA 👑</title>
+    <title>👑 IL REGNO DI TIGROTTA 👑</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-        .wrapper { display: flex; width: 100%; height: 100vh; }
-        
-        /* COLONNA SINISTRA */
-        .col-privata { width: 320px; border-right: 3px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
-        
-        /* ARENA CENTRALE */
-        .col-arena { flex: 1; border-right: 3px solid #00f2ff; display: flex; flex-direction: column; background: #000; }
-        
-        /* DESTRA MEDIA */
-        .col-media { width: 340px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; }
-
-        /* TITOLO CLICCABILE */
-        .titolo-click { 
-            padding: 12px; 
-            text-align: center; 
-            background: #151515; 
-            font-weight: bold; 
-            font-size: 11px; 
-            text-transform: uppercase; 
-            border-bottom: 1px solid #333; 
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: 0.3s;
+        /* SFONDO CON SFUMATURA PER DARE PROFONDITÀ */
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%); 
+            color: white; font-family: 'Rajdhani', sans-serif; overflow: hidden; 
         }
-        .titolo-click:hover { background: #222; color: #fff !important; text-shadow: 0 0 8px #ff00ff; }
-
-        .titolo-statico { padding: 12px; text-align: center; background: #151515; font-weight: bold; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #333; }
         
-        iframe { width: 100%; height: 100%; border: none; background: #000; }
-        
-        .box-video { width: 100%; height: 280px; border: 2px solid #ff00ff; margin-bottom: 15px; border-radius: 10px; overflow: hidden; }
-        .box-yt { width: 100%; height: 180px; border: 2px solid #00f2ff; border-radius: 8px; overflow: hidden; }
+        .wrapper { display: flex; width: 100%; height: 100vh; padding: 10px; box-sizing: border-box; gap: 15px; }
 
-        .yt-input-area { display: flex; gap: 8px; margin-top: 10px; }
-        .yt-input-area input { flex: 1; padding: 8px; background: #111; border: 1px solid #00f2ff; color: #fff; border-radius: 5px; outline: none; }
-        .yt-input-area button { padding: 8px 15px; background: #00f2ff; border: none; color: #000; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        /* BLOCCHI CON EFFETTO VETRO (GLASSMORPHISM) */
+        .panel { 
+            background: rgba(20, 20, 20, 0.8); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: flex; flex-direction: column; 
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .col-left { width: 320px; border-top: 4px solid #ff00ff; }
+        .col-main { flex: 1; border-top: 4px solid #00f2ff; }
+        .col-right { width: 350px; border-top: 4px solid #ff00ff; padding: 15px; gap: 15px; }
+
+        /* TITOLI STILOSI */
+        .panel-header {
+            padding: 15px; text-align: center;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
+            font-weight: bold; letter-spacing: 2px; font-size: 14px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        iframe { width: 100%; height: 100%; border: none; filter: brightness(0.9); transition: 0.3s; }
+        iframe:hover { filter: brightness(1); }
+
+        /* MEDIA AREA */
+        .media-box { 
+            width: 100%; border-radius: 15px; overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.1); background: #000;
+        }
+        .cam-size { height: 300px; }
+        .yt-size { height: 180px; }
+
+        /* INPUT YOUTUBE MODERNO */
+        .yt-controls { display: flex; gap: 5px; background: #111; padding: 5px; border-radius: 10px; }
+        .yt-controls input { 
+            flex: 1; background: transparent; border: none; color: #fff; padding: 10px; outline: none; 
+        }
+        .yt-controls button { 
+            background: #00f2ff; color: #000; border: none; padding: 10px 20px; 
+            border-radius: 8px; font-weight: bold; cursor: pointer;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="col-privata">
-        <div class="titolo-click" style="color:#ff00ff" title="Clicca per resettare la chat" 
-             onclick="document.getElementById('cbox-privata').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">
-            🔐 ZONA RISERVATA (RESET)
-        </div>
-        <iframe id="cbox-privata" src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
+    <div class="panel col-left">
+        <div class="panel-header" style="color: #ff00ff;">🔒 PRIVATA</div>
+        <iframe src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
     </div>
 
-    <div class="col-arena">
-        <div class="titolo-statico" style="color:#00f2ff">🏟️ ARENA AMICI</div>
+    <div class="panel col-main">
+        <div class="panel-header" style="color: #00f2ff;">🏟️ ARENA PRINCIPALE</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
-    <div class="col-media">
-        <div class="titolo-statico" style="color:#ff00ff">🔳 LIVE CAM</div>
-        <div class="box-video">
+    <div class="col-right">
+        <div class="panel media-box cam-size">
+            <div class="panel-header">🔳 LIVE CAM</div>
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
         
-        <div class="titolo-statico" style="color:#00f2ff">📺 YOUTUBE DJ</div>
-        <div class="box-yt">
+        <div class="panel media-box yt-size">
+            <div class="panel-header" style="color: #00f2ff;">📺 YOUTUBE DJ</div>
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
         </div>
-        <div class="yt-input-area">
+
+        <div class="yt-controls">
             <input type="text" id="yt-url" placeholder="Incolla link video...">
             <button onclick="updateYT()">OK</button>
         </div>
@@ -79,17 +92,8 @@
 <script>
     function updateYT() {
         var url = document.getElementById('yt-url').value;
-        var id = "";
-        if (url.includes("v=")) {
-            id = url.split("v=")[1].split("&")[0];
-        } else if (url.includes("youtu.be/")) {
-            id = url.split("/").pop().split("?")[0];
-        } else {
-            id = url;
-        }
-        if (id) {
-            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
-        }
+        var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
+        if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
     }
 </script>
 
