@@ -7,18 +7,25 @@
         body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
         .wrapper { display: flex; width: 100%; height: 100vh; padding: 10px; box-sizing: border-box; gap: 10px; }
 
-        /* SINISTRA: SOLO PRIVATO SEGRETO */
+        /* SINISTRA: PRIVATO */
         .col-left { width: 280px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
         
-        /* CENTRO: ARENA PRINCIPALE */
-        .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #000; }
+        /* CENTRO: ARENA CON NUOVO COLORE SFONDO */
+        .col-main { 
+            flex: 1; 
+            border: 2px solid #00f2ff; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            background: #0f172a; /* NUOVO COLORE: BLU NOTTE SCURO */
+            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.1); 
+        }
 
         /* DESTRA: MEDIA */
         .col-right { width: 320px; display: flex; flex-direction: column; gap: 10px; }
         .box-media { border: 1px solid #333; border-radius: 15px; overflow: hidden; background: #000; }
 
         .header { padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #151515; border-bottom: 1px solid #222; letter-spacing: 1px; }
-        iframe { width: 100%; height: 100%; border: none; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; background: transparent; }
 
         /* INPUTS */
         .input-bar { display: flex; padding: 8px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
@@ -40,13 +47,10 @@
             <button onclick="joinPrivate()">VAI</button>
         </div>
         <iframe id="private-frame" src="about:blank"></iframe>
-        <div style="font-size: 9px; padding: 8px; color: #888; text-align: center; background: #111;">
-            Inserisci un nome segreto e premendo VAI entri nel privato.
-        </div>
     </div>
 
     <div class="col-main">
-        <div class="header" style="color:#00f2ff;">🏟️ ARENA DI GRUPPO</div>
+        <div class="header" style="color:#00f2ff; background: #1e293b;">🏟️ ARENA DI GRUPPO</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
@@ -70,25 +74,12 @@
 <script>
     function joinPrivate() {
         var name = document.getElementById('room-name').value;
-        if(name) {
-            // Usa hack.chat per privacy totale 1-a-1
-            document.getElementById('private-frame').src = "https://hack.chat/?" + name;
-        }
+        if(name) { document.getElementById('private-frame').src = "https://hack.chat/?" + name; }
     }
-
     function updateYT() {
         var url = document.getElementById('yt-url').value;
-        var id = "";
-        if (url.includes("v=")) {
-            id = url.split("v=")[1].split("&")[0];
-        } else if (url.includes("youtu.be/")) {
-            id = url.split("/").pop().split("?")[0];
-        } else {
-            id = url;
-        }
-        if (id) {
-            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
-        }
+        var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
+        if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
     }
 </script>
 
