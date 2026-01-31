@@ -6,23 +6,42 @@
     <style>
         body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
         
-        .top-bar { height: 35px; background: #111; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; }
-        .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; }
-        #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 16px; border-left: 2px solid #333; }
+        .top-bar { height: 35px; background: #000; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 0 15px #ff00ff55; }
+        .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; text-shadow: 0 0 5px #00f2ff; }
+        #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 16px; border-left: 2px solid #333; text-shadow: 0 0 5px #ff00ff; }
 
         .wrapper { display: flex; width: 100%; height: calc(100vh - 35px); padding: 10px; box-sizing: border-box; gap: 10px; }
 
-        .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
-        .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #111; display: flex; flex-direction: column; }
+        .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; box-shadow: 0 0 10px #ff00ff33; }
+        
+        /* COLONNA CENTRALE CON FILTRO DARK FORZATO */
+        .col-main { 
+            flex: 1; 
+            border: 2px solid #00f2ff; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            background: #000; 
+            display: flex; 
+            flex-direction: column;
+            box-shadow: 0 0 10px #00f2ff33;
+        }
+        
+        /* LA MAGIA: Questo inverte i colori della chat bianca */
+        .col-main iframe { 
+            filter: invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.2);
+            background: #fff; 
+        }
+
         .col-right { width: 350px; display: flex; flex-direction: column; gap: 10px; }
 
-        .header { padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #151515; border-bottom: 1px solid #222; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .header { padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #111; border-bottom: 1px solid #222; display: flex; justify-content: center; align-items: center; gap: 10px; }
         
-        iframe { width: 100%; flex-grow: 1; border: none; background: #000; }
+        iframe { width: 100%; flex-grow: 1; border: none; }
 
-        .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; }
+        .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; transition: 0.3s; }
+        .box-media:hover { border-color: #ff00ff; }
         
-        .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; }
+        .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; box-shadow: 0 0 8px #ff000066; }
         
         .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
         input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; outline: none; }
@@ -33,7 +52,7 @@
 
 <div class="top-bar">
     <div class="ticker">
-        <marquee scrollamount="6">🔥 BENVENUTI NELL'IMPERO DI TIGROTTA 🔥 LA REGGIA È ATTIVA 🔥 ENTRA NELLA MULTICAM E ALZA IL VOLUME 🔥</marquee>
+        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - MODALITÀ NOTTE ATTIVATA 🔥 BENVENUTI NEL REGNO 🔥</marquee>
     </div>
     <div id="clock">00:00:00</div>
 </div>
@@ -42,14 +61,14 @@
     <div class="col-left">
         <div class="header" style="color:#ff00ff;">🔒 PRIVATO</div>
         <div class="input-bar">
-            <input type="text" id="room-name" placeholder="Nome stanza...">
+            <input type="text" id="room-name" placeholder="Stanza...">
             <button class="vai-btn" onclick="joinPrivate()">VAI</button>
         </div>
         <iframe id="private-frame" src="about:blank"></iframe>
     </div>
 
     <div class="col-main">
-        <div class="header" style="color:#00f2ff;">🏟️ ARENA DI GRUPPO</div>
+        <div class="header" style="color:#00f2ff;">🏟️ ARENA DARK MODE</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
@@ -58,7 +77,6 @@
             <div class="header" style="color:#ff00ff;">🔳 LIVE MULTICAM</div>
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
-        
         <div class="box-media">
             <div class="header" style="color:#00f2ff;">
                 📺 YOUTUBE DJ 
@@ -70,12 +88,8 @@
 </div>
 
 <script>
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+    function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString('it-IT'); }
+    setInterval(updateClock, 1000); updateClock();
 
     function joinPrivate() {
         var name = document.getElementById('room-name').value;
@@ -83,13 +97,10 @@
     }
 
     function askYoutube() {
-        var url = prompt("Incolla qui il link del video di YouTube:");
+        var url = prompt("Incolla link YouTube:");
         if (url) {
-            var id = "";
-            if (url.includes("v=")) { id = url.split("v=")[1].split("&")[0]; }
-            else if (url.includes("youtu.be/")) { id = url.split("/").pop().split("?")[0]; }
-            else { id = url; }
-            if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
+            var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
+            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
         }
     }
 </script>
