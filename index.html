@@ -5,40 +5,45 @@
     <title>👑 IL REGNO DI TIGROTTA 👑</title>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
-        .top-bar { height: 30px; background: #111; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; }
-        .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 13px; overflow: hidden; }
-        #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 14px; border-left: 1px solid #333; }
-        .wrapper { display: flex; width: 100%; height: calc(100vh - 32px); padding: 10px; box-sizing: border-box; gap: 10px; }
+        
+        .top-bar { height: 35px; background: #111; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; }
+        .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; }
+        #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 16px; border-left: 2px solid #333; }
+
+        .wrapper { display: flex; width: 100%; height: calc(100vh - 35px); padding: 10px; box-sizing: border-box; gap: 10px; }
 
         .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
         .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #111; display: flex; flex-direction: column; }
-        .col-right { width: 320px; display: flex; flex-direction: column; gap: 10px; }
+        .col-right { width: 350px; display: flex; flex-direction: column; gap: 10px; }
 
-        .header { padding: 8px; text-align: center; font-size: 10px; font-weight: bold; text-transform: uppercase; background: #151515; border-bottom: 1px solid #222; display: flex; justify-content: center; align-items: center; gap: 5px; }
+        .header { padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #151515; border-bottom: 1px solid #222; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        
         iframe { width: 100%; flex-grow: 1; border: none; background: #000; }
 
-        .box-media { border: 1px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
-        .cam-h { height: 250px; }
-        .yt-h { height: 200px; }
-        .users-h { flex: 1; border: 1px solid #ff00ff; background: #050505; }
-
-        .btn-small { background: #333; color: #fff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 9px; cursor: pointer; }
+        .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; }
+        
+        .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; }
+        
+        .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
         input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; outline: none; }
+        button.vai-btn { cursor: pointer; border-radius: 4px; border: none; font-weight: bold; font-size: 10px; padding: 5px 10px; background: #ff00ff; color: #000; }
     </style>
 </head>
 <body>
 
 <div class="top-bar">
-    <div class="ticker"><marquee scrollamount="6">🔥 IL REGNO DI TIGROTTA 🔥</marquee></div>
+    <div class="ticker">
+        <marquee scrollamount="6">🔥 BENVENUTI NELL'IMPERO DI TIGROTTA 🔥 LA REGGIA È ATTIVA 🔥 ENTRA NELLA MULTICAM E ALZA IL VOLUME 🔥</marquee>
+    </div>
     <div id="clock">00:00:00</div>
 </div>
 
 <div class="wrapper">
     <div class="col-left">
         <div class="header" style="color:#ff00ff;">🔒 PRIVATO</div>
-        <div style="display:flex; padding:5px; gap:5px; background:#111;">
-            <input type="text" id="room-name" placeholder="Stanza...">
-            <button onclick="joinPrivate()" style="background:#ff00ff; border:none; border-radius:4px; padding:5px; cursor:pointer;">VAI</button>
+        <div class="input-bar">
+            <input type="text" id="room-name" placeholder="Nome stanza...">
+            <button class="vai-btn" onclick="joinPrivate()">VAI</button>
         </div>
         <iframe id="private-frame" src="about:blank"></iframe>
     </div>
@@ -49,26 +54,28 @@
     </div>
 
     <div class="col-right">
-        <div class="box-media cam-h">
-            <div class="header" style="color:#ff00ff;">🔳 LIVE CAM</div>
+        <div class="box-media">
+            <div class="header" style="color:#ff00ff;">🔳 LIVE MULTICAM</div>
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
         
-        <div class="box-media yt-h">
-            <div class="header" style="color:#00f2ff;">📺 YT <button class="btn-small" style="background:#ff0000;" onclick="askYoutube()">+ CAMBIA</button></div>
+        <div class="box-media">
+            <div class="header" style="color:#00f2ff;">
+                📺 YOUTUBE DJ 
+                <button class="yt-btn" onclick="askYoutube()">+ CAMBIA</button>
+            </div>
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
-        </div>
-
-        <div class="box-media users-h">
-            <div class="header" style="color:#ff00ff;">👥 CHI C'È?</div>
-            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=ol&nifty=1" scrolling="auto"></iframe>
         </div>
     </div>
 </div>
 
 <script>
-    function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString('it-IT'); }
-    setInterval(updateClock, 1000); updateClock();
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
     function joinPrivate() {
         var name = document.getElementById('room-name').value;
@@ -76,12 +83,16 @@
     }
 
     function askYoutube() {
-        var url = prompt("Incolla link YouTube:");
+        var url = prompt("Incolla qui il link del video di YouTube:");
         if (url) {
-            var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
-            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
+            var id = "";
+            if (url.includes("v=")) { id = url.split("v=")[1].split("&")[0]; }
+            else if (url.includes("youtu.be/")) { id = url.split("/").pop().split("?")[0]; }
+            else { id = url; }
+            if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
         }
     }
 </script>
+
 </body>
 </html>
