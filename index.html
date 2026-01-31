@@ -9,7 +9,7 @@
         .top-bar { height: 35px; background: #000; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 0 15px #ff00ff55; }
         .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; text-shadow: 0 0 5px #00f2ff; }
         
-        /* BOTTONE CARICA FOTO */
+        /* BOTTONE CARICA FOTO AGGIORNATO */
         .img-upload-btn {
             background: #444;
             color: white;
@@ -24,8 +24,9 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: 0.2s ease-in-out;
         }
-        .img-upload-btn:hover { background: #ff00ff; color: #000; }
+        .img-upload-btn:hover { background: #ff00ff; color: #000; transform: scale(1.05); box-shadow: 0 0 10px #ff00ff; }
 
         #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 16px; border-left: 2px solid #333; text-shadow: 0 0 5px #ff00ff; }
 
@@ -70,11 +71,11 @@
 
 <div class="top-bar">
     <div class="ticker">
-        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - USA IL TASTO 📷 PER MANDARE FOTO IN CHAT 🔥</marquee>
+        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - USA IL TASTO 📸 PER FOTO RAPIDE IN CHAT 🔥</marquee>
     </div>
     
-    <a href="https://imgbb.com/" target="_blank" class="img-upload-btn">
-        📷 CARICA FOTO
+    <a href="https://anonfiles.com/" target="_blank" class="img-upload-btn">
+        📸 FOTO RAPIDA
     </a>
 
     <div id="clock">00:00:00</div>
