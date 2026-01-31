@@ -9,14 +9,14 @@
         .top-bar { height: 35px; background: #000; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 0 15px #ff00ff55; }
         .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; text-shadow: 0 0 5px #00f2ff; }
         
-        /* BOTTONE CARICA FOTO AGGIORNATO */
+        /* BOTTONE CARICA FOTO - SISTEMATO */
         .img-upload-btn {
-            background: #444;
-            color: white;
-            border: 1px solid #ff00ff;
+            background: #222;
+            color: #ff00ff;
+            border: 2px solid #ff00ff;
             border-radius: 4px;
-            padding: 2px 8px;
-            margin-right: 10px;
+            padding: 2px 10px;
+            margin-right: 15px;
             cursor: pointer;
             font-size: 12px;
             font-weight: bold;
@@ -24,43 +24,26 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            transition: 0.2s ease-in-out;
+            box-shadow: 0 0 5px #ff00ff;
         }
-        .img-upload-btn:hover { background: #ff00ff; color: #000; transform: scale(1.05); box-shadow: 0 0 10px #ff00ff; }
+        .img-upload-btn:hover { background: #ff00ff; color: #000; }
 
         #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 16px; border-left: 2px solid #333; text-shadow: 0 0 5px #ff00ff; }
 
         .wrapper { display: flex; width: 100%; height: calc(100vh - 35px); padding: 10px; box-sizing: border-box; gap: 10px; }
 
-        .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; box-shadow: 0 0 10px #ff00ff33; }
+        .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
+        .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
         
-        .col-main { 
-            flex: 1; 
-            border: 2px solid #00f2ff; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            background: #000; 
-            display: flex; 
-            flex-direction: column;
-            box-shadow: 0 0 10px #00f2ff33;
-        }
-        
-        /* FILTRO DARK FORZATO */
-        .col-main iframe { 
-            filter: invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.2);
-            background: #fff; 
-        }
+        /* FILTRO DARK CHAT */
+        .col-main iframe { filter: invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.2); background: #fff; }
 
         .col-right { width: 350px; display: flex; flex-direction: column; gap: 10px; }
-
         .header { padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #111; border-bottom: 1px solid #222; display: flex; justify-content: center; align-items: center; gap: 10px; }
         
         iframe { width: 100%; flex-grow: 1; border: none; }
-
-        .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; transition: 0.3s; }
-        .box-media:hover { border-color: #ff00ff; }
-        
-        .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; box-shadow: 0 0 8px #ff000066; }
+        .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; }
+        .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; }
         
         .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
         input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; outline: none; }
@@ -71,11 +54,11 @@
 
 <div class="top-bar">
     <div class="ticker">
-        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - USA IL TASTO 📸 PER FOTO RAPIDE IN CHAT 🔥</marquee>
+        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - CARICA LE TUE FOTO E MANDALE NELL'ARENA 🔥</marquee>
     </div>
     
-    <a href="https://anonfiles.com/" target="_blank" class="img-upload-btn">
-        📸 FOTO RAPIDA
+    <a href="https://postimages.org/" target="_blank" class="img-upload-btn">
+        📸 INVIA FOTO
     </a>
 
     <div id="clock">00:00:00</div>
