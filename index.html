@@ -4,51 +4,68 @@
     <meta charset="UTF-8">
     <title>👑 IMPERO TIGROTTA 👑</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
         .wrapper { display: flex; width: 100%; height: 100vh; }
         
-        /* SINISTRA: EQUILIBRATA */
+        /* COLONNA SINISTRA */
         .col-privata { width: 320px; border-right: 3px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
         
-        /* CENTRO: ARENA */
+        /* ARENA CENTRALE */
         .col-arena { flex: 1; border-right: 3px solid #00f2ff; display: flex; flex-direction: column; background: #000; }
         
-        /* DESTRA: MEDIA */
+        /* DESTRA MEDIA */
         .col-media { width: 340px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; }
 
-        .titolo { padding: 12px; text-align: center; background: #151515; font-weight: bold; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #333; letter-spacing: 1px; }
+        /* TITOLO CLICCABILE */
+        .titolo-click { 
+            padding: 12px; 
+            text-align: center; 
+            background: #151515; 
+            font-weight: bold; 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            border-bottom: 1px solid #333; 
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .titolo-click:hover { background: #222; color: #fff !important; text-shadow: 0 0 8px #ff00ff; }
+
+        .titolo-statico { padding: 12px; text-align: center; background: #151515; font-weight: bold; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #333; }
+        
         iframe { width: 100%; height: 100%; border: none; background: #000; }
         
-        /* BOX ESTETICI */
-        .box-video { width: 100%; height: 280px; border: 2px solid #ff00ff; margin-bottom: 15px; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(255,0,255,0.2); }
-        .box-yt { width: 100%; height: 180px; border: 2px solid #00f2ff; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0,242,255,0.2); }
+        .box-video { width: 100%; height: 280px; border: 2px solid #ff00ff; margin-bottom: 15px; border-radius: 10px; overflow: hidden; }
+        .box-yt { width: 100%; height: 180px; border: 2px solid #00f2ff; border-radius: 8px; overflow: hidden; }
 
         .yt-input-area { display: flex; gap: 8px; margin-top: 10px; }
         .yt-input-area input { flex: 1; padding: 8px; background: #111; border: 1px solid #00f2ff; color: #fff; border-radius: 5px; outline: none; }
-        .yt-input-area button { padding: 8px 15px; background: #00f2ff; border: none; color: #000; font-weight: bold; cursor: pointer; border-radius: 5px; transition: 0.3s; }
-        .yt-input-area button:hover { background: #fff; }
+        .yt-input-area button { padding: 8px 15px; background: #00f2ff; border: none; color: #000; font-weight: bold; cursor: pointer; border-radius: 5px; }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="col-privata">
-        <div class="titolo" style="color:#ff00ff">🔐 ZONA RISERVATA</div>
-        <iframe src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
+        <div class="titolo-click" style="color:#ff00ff" title="Clicca per resettare la chat" 
+             onclick="document.getElementById('cbox-privata').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">
+            🔐 ZONA RISERVATA (RESET)
+        </div>
+        <iframe id="cbox-privata" src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
     </div>
 
     <div class="col-arena">
-        <div class="titolo" style="color:#00f2ff">🏟️ ARENA AMICI</div>
+        <div class="titolo-statico" style="color:#00f2ff">🏟️ ARENA AMICI</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
     <div class="col-media">
-        <div class="titolo" style="color:#ff00ff">🔳 LIVE CAM</div>
+        <div class="titolo-statico" style="color:#ff00ff">🔳 LIVE CAM</div>
         <div class="box-video">
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
         
-        <div class="titolo" style="color:#00f2ff">📺 YOUTUBE DJ</div>
+        <div class="titolo-statico" style="color:#00f2ff">📺 YOUTUBE DJ</div>
         <div class="box-yt">
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
         </div>
