@@ -1,77 +1,56 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>👑 IMPERO TIGROTTA 👑</title>
+    <title>IMPERO</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
-        .wrapper { display: flex; width: 100%; height: 100vh; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
+        .main { display: flex; width: 100vw; height: 100vh; }
         
-        /* SINISTRA RIMPICCIOLITA (260px) */
-        .col-privata { width: 260px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
+        /* SINISTRA: STRETTA PER IL PRIVATO */
+        .col-p { width: 250px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; }
         
-        /* ARENA CENTRALE (PIÙ SPAZIO) */
-        .col-arena { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; background: #000; }
+        /* CENTRO: ARENA GRANDE */
+        .col-a { flex: 1; border-right: 2px solid #00f2ff; display: flex; }
         
-        /* DESTRA MEDIA */
-        .col-media { width: 320px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; }
+        /* DESTRA: MEDIA */
+        .col-m { width: 320px; display: flex; flex-direction: column; background: #0a0a0a; padding: 5px; }
 
-        .bar { display: flex; background: #1a1a1a; }
-        .bar button { flex: 1; padding: 10px; background: #222; color: #00f2ff; border: 1px solid #333; cursor: pointer; font-weight: bold; font-size: 9px; text-transform: uppercase; }
-        .bar button:hover { background: #ff00ff; color: #000; }
-
-        .titolo { padding: 8px; text-align: center; background: #111; font-weight: bold; font-size: 10px; text-transform: uppercase; border-bottom: 1px solid #333; }
-        iframe { width: 100%; height: 100%; border: none; background: #000; }
+        .head { background: #111; color: #ff00ff; padding: 8px; text-align: center; font-size: 10px; font-weight: bold; border-bottom: 1px solid #333; }
+        iframe { width: 100%; height: 100%; border: none; }
         
-        .box-video { width: 100%; height: 260px; border: 2px solid #ff00ff; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
-        .box-yt { width: 100%; height: 150px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; }
-
-        .yt-input-area { display: flex; gap: 5px; margin-top: 10px; }
-        .yt-input-area input { flex: 1; padding: 5px; background: #000; border: 1px solid #00f2ff; color: #fff; font-size: 12px; }
-        .yt-input-area button { padding: 5px 10px; background: #00f2ff; border: none; color: #000; font-weight: bold; cursor: pointer; }
+        .vid { height: 250px; border: 1px solid #ff00ff; margin-bottom: 5px; }
+        .utube { height: 150px; border: 1px solid #00f2ff; }
+        .yt-set { display: flex; margin-top: 5px; }
+        .yt-set input { flex: 1; background: #000; color: #fff; border: 1px solid #00f2ff; padding: 5px; font-size: 10px; }
+        .yt-set button { background: #00f2ff; border: none; padding: 5px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="col-privata">
-        <div class="titolo" style="color:#ff00ff">🔐 CHATTINA</div>
-        <div class="bar">
-            <button onclick="document.getElementById('cbox-priv').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">CHAT</button>
-            <button onclick="window.open('https://hack.chat/?impero_segreto', '_blank')" style="background: #400; color: #fff;">PRIVATO 🔒</button>
-        </div>
-        <iframe id="cbox-priv" src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
+<div class="main">
+    <div class="col-p">
+        <div class="head">🔐 PRIVATA</div>
+        <iframe src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav"></iframe>
     </div>
 
-    <div class="col-arena">
-        <div class="titolo">🏟️ ARENA AMICI</div>
+    <div class="col-a">
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
-    <div class="col-media">
-        <div class="titolo" style="color:#ff00ff">🔳 LIVE CAM</div>
-        <div class="box-video">
+    <div class="col-m">
+        <div class="vid">
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
-        
-        <div class="titolo" style="color:#00f2ff">📺 YOUTUBE</div>
-        <div class="box-yt">
-            <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
+        <div class="utube">
+            <iframe id="player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
         </div>
-        <div class="yt-input-area">
-            <input type="text" id="yt-url" placeholder="Link video...">
-            <button onclick="updateYT()">OK</button>
+        <div class="yt-set">
+            <input type="text" id="url" placeholder="Link YouTube...">
+            <button onclick="document.getElementById('player').src='https://www.youtube.com/embed/'+(document.getElementById('url').value.includes('v=')?document.getElementById('url').value.split('v=')[1].split('&')[0]:document.getElementById('url').value.split('/').pop())+'?autoplay=1'">OK</button>
         </div>
     </div>
 </div>
-
-<script>
-    function updateYT() {
-        var url = document.getElementById('yt-url').value;
-        var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
-        if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
-    }
-</script>
 
 </body>
 </html>
