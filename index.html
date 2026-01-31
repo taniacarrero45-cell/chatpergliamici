@@ -7,38 +7,41 @@
         body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
         .wrapper { display: flex; width: 100%; height: 100vh; }
         
-        /* COLONNE */
-        .col-privata { width: 380px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
+        /* COLONNA SINISTRA PIÙ STRETTA (280px invece di 380) */
+        .col-privata { width: 280px; border-right: 2px solid #ff00ff; display: flex; flex-direction: column; background: #0a0a0a; }
+        
+        /* ARENA CENTRALE (PIÙ GRANDE) */
         .col-arena { flex: 1; border-right: 2px solid #00f2ff; display: flex; flex-direction: column; background: #000; }
-        .col-media { width: 340px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; }
+        
+        /* COLONNA DESTRA MEDIA */
+        .col-media { width: 320px; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; background: #0a0a0a; }
 
-        /* BOTTONI STANZE */
         .bar { display: flex; background: #1a1a1a; }
-        .bar button { flex: 1; padding: 12px; background: #222; color: #00f2ff; border: 1px solid #333; cursor: pointer; font-weight: bold; font-size: 10px; text-transform: uppercase; }
+        .bar button { flex: 1; padding: 10px; background: #222; color: #00f2ff; border: 1px solid #333; cursor: pointer; font-weight: bold; font-size: 9px; text-transform: uppercase; }
         .bar button:hover { background: #ff00ff; color: #000; }
 
-        .titolo { padding: 8px; text-align: center; background: #111; font-weight: bold; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #333; }
-        
+        .titolo { padding: 8px; text-align: center; background: #111; font-weight: bold; font-size: 10px; text-transform: uppercase; border-bottom: 1px solid #333; }
         iframe { width: 100%; height: 100%; border: none; background: #000; }
         
-        /* MEDIA BOX */
-        .box-video { width: 100%; height: 300px; border: 2px solid #ff00ff; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
-        .box-yt { width: 100%; height: 180px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; }
+        .box-video { width: 100%; height: 260px; border: 2px solid #ff00ff; margin-bottom: 10px; border-radius: 8px; overflow: hidden; }
+        .box-yt { width: 100%; height: 150px; border: 2px solid #00f2ff; border-radius: 5px; overflow: hidden; }
 
-        /* INPUT YOUTUBE */
-        .yt-input-area { display: flex; gap: 5px; margin-top: 10px; width: 100%; }
-        .yt-input-area input { flex: 1; padding: 8px; background: #000; border: 1px solid #00f2ff; color: #fff; border-radius: 4px; }
-        .yt-input-area button { padding: 8px 15px; background: #00f2ff; border: none; color: #000; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        .yt-input-area { display: flex; gap: 5px; margin-top: 10px; }
+        .yt-input-area input { flex: 1; padding: 5px; background: #000; border: 1px solid #00f2ff; color: #fff; font-size: 12px; }
+        .yt-input-area button { padding: 5px 10px; background: #00f2ff; border: none; color: #000; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="col-privata">
-        <div class="titolo" style="color:#ff00ff">🔐 STANZE PRIVATE</div>
+        <div class="titolo" style="color:#ff00ff">🔐 ZONA RISERVATA</div>
+        <div style="background: #200; font-size: 9px; padding: 5px; text-align: center; color: #ff9999;">
+            ⚠️ I messaggi qui sono visibili a chi entra nella stanza.
+        </div>
         <div class="bar">
-            <button onclick="document.getElementById('cbox1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">Principale</button>
-            <button onclick="document.getElementById('cbox1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main&chn=musica'">Musica 🎵</button>
+            <button onclick="document.getElementById('cbox1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main'">Entra</button>
+            <button onclick="document.getElementById('cbox1').src='https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main&chn=musica'">Musica</button>
         </div>
         <iframe id="cbox1" src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
     </div>
@@ -54,12 +57,12 @@
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
         
-        <div class="titolo" style="color:#00f2ff">📺 YOUTUBE DJ</div>
+        <div class="titolo" style="color:#00f2ff">📺 YOUTUBE</div>
         <div class="box-yt">
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
         </div>
         <div class="yt-input-area">
-            <input type="text" id="yt-url" placeholder="Incolla link YouTube...">
+            <input type="text" id="yt-url" placeholder="Link video...">
             <button onclick="updateYT()">OK</button>
         </div>
     </div>
@@ -68,17 +71,8 @@
 <script>
     function updateYT() {
         var url = document.getElementById('yt-url').value;
-        var id = "";
-        if (url.includes("v=")) {
-            id = url.split("v=")[1].split("&")[0];
-        } else if (url.includes("youtu.be/")) {
-            id = url.split("/").pop().split("?")[0];
-        } else {
-            id = url;
-        }
-        if (id) {
-            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
-        }
+        var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
+        if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
     }
 </script>
 
