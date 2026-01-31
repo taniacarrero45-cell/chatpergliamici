@@ -9,7 +9,7 @@
         .top-bar { height: 35px; background: #000; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 0 15px #ff00ff55; }
         .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; text-shadow: 0 0 5px #00f2ff; }
         
-        /* BOTTONE CARICA FOTO - SISTEMATO */
+        /* TASTO FOTO RAPIDA */
         .img-upload-btn {
             background: #222;
             color: #ff00ff;
@@ -33,9 +33,18 @@
         .wrapper { display: flex; width: 100%; height: calc(100vh - 35px); padding: 10px; box-sizing: border-box; gap: 10px; }
 
         .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
-        .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
         
-        /* FILTRO DARK CHAT */
+        .col-main { 
+            flex: 1; 
+            border: 2px solid #00f2ff; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            background: #000; 
+            display: flex; 
+            flex-direction: column;
+        }
+        
+        /* FILTRO DARK CHAT PER NON ABBAGLIARE */
         .col-main iframe { filter: invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.2); background: #fff; }
 
         .col-right { width: 350px; display: flex; flex-direction: column; gap: 10px; }
@@ -43,6 +52,7 @@
         
         iframe { width: 100%; flex-grow: 1; border: none; }
         .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; }
+        
         .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; }
         
         .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
@@ -54,11 +64,11 @@
 
 <div class="top-bar">
     <div class="ticker">
-        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - CARICA LE TUE FOTO E MANDALE NELL'ARENA 🔥</marquee>
+        <marquee scrollamount="6">🔥 L'IMPERO DI TIGROTTA - ARENA ATTIVA - CARICA LE TUE FOTO DAL PC CON IL TASTO 📸 🔥</marquee>
     </div>
     
-    <a href="https://postimages.org/" target="_blank" class="img-upload-btn">
-        📸 INVIA FOTO
+    <a href="https://catbox.moe/" target="_blank" class="img-upload-btn">
+        📸 FOTO RAPIDA
     </a>
 
     <div id="clock">00:00:00</div>
@@ -68,7 +78,7 @@
     <div class="col-left">
         <div class="header" style="color:#ff00ff;">🔒 PRIVATO</div>
         <div class="input-bar">
-            <input type="text" id="room-name" placeholder="Stanza...">
+            <input type="text" id="room-name" placeholder="Nome stanza...">
             <button class="vai-btn" onclick="joinPrivate()">VAI</button>
         </div>
         <iframe id="private-frame" src="about:blank"></iframe>
@@ -106,8 +116,11 @@
     function askYoutube() {
         var url = prompt("Incolla link YouTube:");
         if (url) {
-            var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
-            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
+            var id = "";
+            if (url.includes("v=")) { id = url.split("v=")[1].split("&")[0]; }
+            else if (url.includes("youtu.be/")) { id = url.split("/").pop().split("?")[0]; }
+            else { id = url; }
+            if (id) { document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1"; }
         }
     }
 </script>
