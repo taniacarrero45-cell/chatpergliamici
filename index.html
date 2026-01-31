@@ -25,10 +25,10 @@
 
         .box-media { border: 1px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
         
-        /* ALTEZZE OTTIMIZZATE */
+        /* ALTEZZE OTTIMIZZATE PER FAR STARE TUTTO */
         .cam-h { height: 200px; }
         .yt-h { height: 160px; }
-        .users-h { flex: 1; border: 1px solid #00f2ff; }
+        .users-h { flex: 1; border: 1px solid #ff00ff; } /* Bordo rosa per distinguere la lista */
 
         .btn-small { background: #333; color: #fff; border: none; border-radius: 4px; padding: 2px 6px; font-size: 9px; cursor: pointer; }
         .yt-btn { background: #ff0000; color: #fff; }
@@ -41,7 +41,7 @@
 
 <div class="top-bar">
     <div class="ticker">
-        <marquee scrollamount="6">🔥 IL REGNO DI TIGROTTA È ONLINE 🔥 CONTROLLA LA LISTA UTENTI A DESTRA 🔥</marquee>
+        <marquee scrollamount="6">🔥 IL REGNO DI TIGROTTA 🔥 CHI C'È ONLINE? CONTROLLA LA LISTA A DESTRA! 🔥</marquee>
     </div>
     <div id="clock">00:00:00</div>
 </div>
@@ -75,11 +75,8 @@
         </div>
 
         <div class="box-media users-h">
-            <div class="header" style="color:#00f2ff;">
-                👥 ONLINE 
-                <button class="btn-small" onclick="refreshUsers()">🔄</button>
-            </div>
-            <iframe id="users-frame" src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=main"></iframe>
+            <div class="header" style="color:#ff00ff;">👥 NICK ONLINE</div>
+            <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=ol" scrolling="auto"></iframe>
         </div>
     </div>
 </div>
@@ -95,11 +92,6 @@
     function joinPrivate() {
         var name = document.getElementById('room-name').value;
         if(name) { document.getElementById('private-frame').src = "https://hack.chat/?" + name; }
-    }
-
-    function refreshUsers() {
-        // Ricarica solo il frame degli utenti
-        document.getElementById('users-frame').src = "https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3&sec=main";
     }
 
     function askYoutube() {
