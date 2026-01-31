@@ -2,94 +2,81 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>👑 IL REGNO DI TIGROTTA 👑</title>
+    <title>👑 IMPERO TIGROTTA 👑</title>
     <style>
-        /* SFONDO CON SFUMATURA PER DARE PROFONDITÀ */
-        body, html { 
-            margin: 0; padding: 0; height: 100%; 
-            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%); 
-            color: white; font-family: 'Rajdhani', sans-serif; overflow: hidden; 
-        }
-        
-        .wrapper { display: flex; width: 100%; height: 100vh; padding: 10px; box-sizing: border-box; gap: 15px; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #050505; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        .wrapper { display: flex; width: 100%; height: 100vh; padding: 10px; box-sizing: border-box; gap: 10px; }
 
-        /* BLOCCHI CON EFFETTO VETRO (GLASSMORPHISM) */
-        .panel { 
-            background: rgba(20, 20, 20, 0.8); 
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            display: flex; flex-direction: column; 
-            overflow: hidden;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-        }
+        /* SINISTRA: DOPPIO MODULO (CHAT + PRIVATO) */
+        .col-left { width: 320px; display: flex; flex-direction: column; gap: 10px; }
+        .box-privata { flex: 1; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #000; }
+        .box-segreto { height: 250px; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; display: flex; flex-direction: column; }
 
-        .col-left { width: 320px; border-top: 4px solid #ff00ff; }
-        .col-main { flex: 1; border-top: 4px solid #00f2ff; }
-        .col-right { width: 350px; border-top: 4px solid #ff00ff; padding: 15px; gap: 15px; }
+        /* CENTRO: ARENA */
+        .col-main { flex: 1; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #000; }
 
-        /* TITOLI STILOSI */
-        .panel-header {
-            padding: 15px; text-align: center;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
-            font-weight: bold; letter-spacing: 2px; font-size: 14px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-        }
+        /* DESTRA: MEDIA */
+        .col-right { width: 320px; display: flex; flex-direction: column; gap: 10px; }
+        .box-media { border: 1px solid #333; border-radius: 15px; overflow: hidden; background: #000; }
 
-        iframe { width: 100%; height: 100%; border: none; filter: brightness(0.9); transition: 0.3s; }
-        iframe:hover { filter: brightness(1); }
+        .header { padding: 8px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #111; border-bottom: 1px solid #222; }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        /* MEDIA AREA */
-        .media-box { 
-            width: 100%; border-radius: 15px; overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.1); background: #000;
-        }
-        .cam-size { height: 300px; }
-        .yt-size { height: 180px; }
-
-        /* INPUT YOUTUBE MODERNO */
-        .yt-controls { display: flex; gap: 5px; background: #111; padding: 5px; border-radius: 10px; }
-        .yt-controls input { 
-            flex: 1; background: transparent; border: none; color: #fff; padding: 10px; outline: none; 
-        }
-        .yt-controls button { 
-            background: #00f2ff; color: #000; border: none; padding: 10px 20px; 
-            border-radius: 8px; font-weight: bold; cursor: pointer;
-        }
+        /* INPUTS */
+        .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; }
+        .input-bar input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; }
+        .input-bar button { background: #ff00ff; border: none; color: #000; font-weight: bold; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="panel col-left">
-        <div class="panel-header" style="color: #ff00ff;">🔒 PRIVATA</div>
-        <iframe src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
+    <div class="col-left">
+        <div class="box-privata">
+            <div class="header" style="color:#ff00ff;">💬 Chat Gruppo</div>
+            <iframe src="https://www5.cbox.ws/box/?boxid=961010&boxtag=SECbav&sec=main"></iframe>
+        </div>
+
+        <div class="box-segreto">
+            <div class="header" style="color:#00f2ff;">🔒 Privato Segreto</div>
+            <div class="input-bar">
+                <input type="text" id="room-name" placeholder="Nome stanza...">
+                <button onclick="joinPrivate()">VAI</button>
+            </div>
+            <iframe id="private-frame" src="about:blank"></iframe>
+            <div style="font-size: 9px; padding: 5px; color: #666; text-align: center;">Scrivi un nome a caso (es: 'tigre77') e dillo al tuo amico.</div>
+        </div>
     </div>
 
-    <div class="panel col-main">
-        <div class="panel-header" style="color: #00f2ff;">🏟️ ARENA PRINCIPALE</div>
+    <div class="col-main">
+        <div class="header">🏟️ ARENA PRINCIPALE</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
     <div class="col-right">
-        <div class="panel media-box cam-size">
-            <div class="panel-header">🔳 LIVE CAM</div>
+        <div class="box-media" style="height: 250px;">
+            <div class="header">🔳 LIVE CAM</div>
             <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
         </div>
-        
-        <div class="panel media-box yt-size">
-            <div class="panel-header" style="color: #00f2ff;">📺 YOUTUBE DJ</div>
+        <div class="box-media" style="flex: 1; display: flex; flex-direction: column;">
+            <div class="header">📺 YOUTUBE DJ</div>
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
-        </div>
-
-        <div class="yt-controls">
-            <input type="text" id="yt-url" placeholder="Incolla link video...">
-            <button onclick="updateYT()">OK</button>
+            <div class="input-bar">
+                <input type="text" id="yt-url" placeholder="Incolla link...">
+                <button onclick="updateYT()" style="background:#00f2ff">OK</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+    function joinPrivate() {
+        var name = document.getElementById('room-name').value;
+        if(name) {
+            document.getElementById('private-frame').src = "https://hack.chat/?" + name;
+        }
+    }
+
     function updateYT() {
         var url = document.getElementById('yt-url').value;
         var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
