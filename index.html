@@ -6,36 +6,22 @@
     <style>
         body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
         
-        /* BARRA SUPERIORE */
-        .top-bar {
-            height: 30px;
-            background: #111;
-            border-bottom: 2px solid #ff00ff;
-            display: flex;
-            align-items: center;
-        }
+        .top-bar { height: 30px; background: #111; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; }
         .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 13px; overflow: hidden; }
         #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 14px; border-left: 1px solid #333; }
 
-        /* CONTENITORE PRINCIPALE */
-        .wrapper { 
-            display: flex; 
-            width: 100%; 
-            height: calc(100vh - 32px); /* Toglie lo spazio della barra sopra */
-            padding: 10px; 
-            box-sizing: border-box; 
-            gap: 10px; 
-        }
+        .wrapper { display: flex; width: 100%; height: calc(100vh - 32px); padding: 10px; box-sizing: border-box; gap: 10px; }
 
         .col-left { width: 280px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
         .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #111; display: flex; flex-direction: column; }
-        .col-right { width: 320px; display: flex; flex-direction: column; gap: 10px; }
+        .col-right { width: 340px; display: flex; flex-direction: column; gap: 10px; }
 
         .header { padding: 8px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #151515; border-bottom: 1px solid #222; }
-        iframe { width: 100%; flex-grow: 1; border: none; background: transparent; }
+        iframe { width: 100%; flex-grow: 1; border: none; background: #000; }
 
         .box-media { border: 1px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
-        .cam-h { height: 220px; } 
+        /* ALTEZZA MULTICAM OTTIMIZZATA */
+        .cam-h { height: 300px; border: 2px solid #ff00ff; } 
 
         .input-bar, .yt-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-top: 1px solid #222; }
         input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; outline: none; }
@@ -46,9 +32,7 @@
 
 <div class="top-bar">
     <div class="ticker">
-        <marquee scrollamount="6">
-            🔥 BENVENUTI NELL'IMPERO DI TIGROTTA 🔥 REGOLE: RISPETTO E DIVERTIMENTO 🔥 DJ SET LIVE 🔥
-        </marquee>
+        <marquee scrollamount="6">🔥 BENVENUTI NELL'IMPERO - MULTICAM ATTIVA 🔥 RISPETTO E DIVERTIMENTO 🔥</marquee>
     </div>
     <div id="clock">00:00:00</div>
 </div>
@@ -70,9 +54,14 @@
 
     <div class="col-right">
         <div class="box-media cam-h">
-            <div class="header" style="color:#ff00ff;">🔳 LIVE CAM</div>
-            <iframe src="https://meet.jit.si/chatpergliamici" allow="camera; microphone; fullscreen"></iframe>
+            <div class="header" style="color:#ff00ff;">🔳 LIVE MULTICAM</div>
+            <iframe 
+                src="https://meet.jit.si/chatpergliamici" 
+                allow="camera; microphone; display-capture; fullscreen; clipboard-read; clipboard-write; speaker-selection" 
+                allowfullscreen>
+            </iframe>
         </div>
+        
         <div class="box-media" style="flex:1;">
             <div class="header" style="color:#00f2ff;">📺 YOUTUBE DJ</div>
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
