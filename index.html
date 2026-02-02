@@ -9,7 +9,6 @@
         .top-bar { height: 35px; background: #000; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 0 15px #ff00ff55; }
         .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; text-shadow: 0 0 5px #00f2ff; }
         
-        /* CONTATORE DISCRETO */
         .visitor-counter { padding: 0 15px; color: #00f2ff; font-size: 12px; font-weight: bold; border-left: 2px solid #333; display: flex; align-items: center; gap: 8px; }
         .visitor-counter img { height: 18px; filter: invert(1) brightness(2) hue-rotate(180deg); }
 
@@ -26,7 +25,6 @@
         .col-left { width: 250px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
         .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
         
-        /* CHAT INVIOLATA - SOLO FILTRO COLORE */
         .col-main iframe { filter: invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.2); background: #fff; }
 
         .col-right { width: 350px; display: flex; flex-direction: column; gap: 10px; }
@@ -38,7 +36,7 @@
         
         .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
         input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; outline: none; }
-        button.vai-btn { cursor: pointer; border-radius: 4px; border-none; font-weight: bold; font-size: 10px; padding: 5px 10px; background: #ff00ff; color: #000; }
+        button.vai-btn { cursor: pointer; border-radius: 4px; border: none; font-weight: bold; font-size: 10px; padding: 5px 10px; background: #ff00ff; color: #000; }
     </style>
 </head>
 <body>
@@ -82,7 +80,7 @@
                 📺 YOUTUBE DJ 
                 <button class="yt-btn" onclick="askYoutube()">+ CAMBIA</button>
             </div>
-            <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allowfullscreen></iframe>
+            <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
 </div>
@@ -99,8 +97,16 @@
     function askYoutube() {
         var url = prompt("Incolla link YouTube:");
         if (url) {
-            var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
-            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
+            var id = "";
+            if (url.includes("v=")) {
+                id = url.split("v=")[1].split("&")[0];
+            } else if (url.includes("youtu.be/")) {
+                id = url.split("youtu.be/")[1].split("?")[0];
+            } else {
+                id = url.split("/").pop().split("?")[0];
+            }
+            // Aggiunti parametri di sicurezza per permettere la visione a tutti
+            document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&enablejsapi=1";
         }
     }
 </script>
