@@ -28,7 +28,7 @@
 <body>
 
 <div class="top-bar">
-    <div class="ticker"><marquee scrollamount="6">🔥 REGNO DI TIGROTTA - VERSIONE SICURA AGGIORNATA 🔥</marquee></div>
+    <div class="ticker"><marquee scrollamount="6">👑 BENVENUTI NEL REGNO - VERSIONE 2.0 SUPER SICURA 👑</marquee></div>
     <a href="https://catbox.moe/" target="_blank" class="img-upload-btn">📸 FOTO</a>
     <div class="visitor-counter">👁️ <img src="https://www.cutercounter.com/hits.php?id=gvxpndp&nd=6&style=1" border="0"></div>
     <div id="clock">00:00:00</div>
@@ -36,7 +36,7 @@
 
 <div class="wrapper">
     <div class="col-left">
-        <div class="header" style="color:#ff00ff;">🔒 PRIVATO</div>
+        <div class="header" style="color:#ff00ff;">🔒 CHAT PRIVATA</div>
         <div class="input-bar">
             <input type="text" id="room-name" placeholder="Nome stanza...">
             <button class="vai-btn" onclick="joinPrivate()">VAI</button>
@@ -72,7 +72,14 @@
     function askYoutube() {
         var url = prompt("Incolla link YouTube:");
         if (url) {
-            var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
+            var id = "";
+            if (url.includes("v=")) {
+                id = url.split("v=")[1].split("&")[0];
+            } else if (url.includes("youtu.be/")) {
+                id = url.split("youtu.be/")[1].split("?")[0];
+            } else {
+                id = url.split("/").pop().split("?")[0];
+            }
             document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&enablejsapi=1";
         }
     }
