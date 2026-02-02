@@ -5,35 +5,21 @@
     <title>👑 IL REGNO DI TIGROTTA 👑</title>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; background: #000; color: white; font-family: sans-serif; overflow: hidden; }
-        
         .top-bar { height: 35px; background: #000; border-bottom: 2px solid #ff00ff; display: flex; align-items: center; box-shadow: 0 0 15px #ff00ff55; }
         .ticker { flex: 1; color: #00f2ff; font-weight: bold; font-size: 14px; overflow: hidden; text-shadow: 0 0 5px #00f2ff; }
-        
         .visitor-counter { padding: 0 15px; color: #00f2ff; font-size: 12px; font-weight: bold; border-left: 2px solid #333; display: flex; align-items: center; gap: 8px; }
         .visitor-counter img { height: 18px; filter: invert(1) brightness(2) hue-rotate(180deg); }
-
-        .img-upload-btn {
-            background: #222; color: #ff00ff; border: 2px solid #ff00ff; border-radius: 4px;
-            padding: 2px 10px; margin-right: 15px; cursor: pointer; font-size: 11px; font-weight: bold;
-            text-decoration: none; display: flex; align-items: center; gap: 5px;
-        }
-        .img-upload-btn:hover { background: #ff00ff; color: #000; }
-
+        .img-upload-btn { background: #222; color: #ff00ff; border: 2px solid #ff00ff; border-radius: 4px; padding: 2px 10px; margin-right: 15px; cursor: pointer; font-size: 11px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px; }
         #clock { padding: 0 15px; color: #ff00ff; font-family: monospace; font-size: 16px; border-left: 2px solid #333; text-shadow: 0 0 5px #ff00ff; }
-
         .wrapper { display: flex; width: 100%; height: calc(100vh - 35px); padding: 10px; box-sizing: border-box; gap: 10px; }
-        .col-left { width: 280px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
+        .col-left { width: 300px; display: flex; flex-direction: column; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; background: #0a0a0a; }
         .col-main { flex: 1; border: 2px solid #00f2ff; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; }
-        
         .col-main iframe { filter: invert(90%) hue-rotate(180deg) brightness(1.1) contrast(1.2); background: #fff; }
-
-        .col-right { width: 400px; display: flex; flex-direction: column; gap: 10px; }
+        .col-right { width: 450px; display: flex; flex-direction: column; gap: 10px; }
         .header { padding: 10px; text-align: center; font-size: 11px; font-weight: bold; text-transform: uppercase; background: #111; border-bottom: 1px solid #222; display: flex; justify-content: center; align-items: center; gap: 10px; }
-        
         iframe { width: 100%; flex-grow: 1; border: none; }
         .box-media { border: 2px solid #333; border-radius: 15px; overflow: hidden; background: #000; display: flex; flex-direction: column; flex: 1; }
         .yt-btn { background: #ff0000; color: white; border: none; border-radius: 5px; padding: 4px 10px; font-size: 10px; cursor: pointer; font-weight: bold; }
-        
         .input-bar { display: flex; padding: 5px; background: #111; gap: 5px; border-bottom: 1px solid #222; }
         input { flex: 1; background: #000; border: 1px solid #444; color: #fff; padding: 5px; font-size: 11px; border-radius: 4px; outline: none; }
         button.vai-btn { cursor: pointer; border-radius: 4px; border: none; font-weight: bold; font-size: 10px; padding: 5px 10px; background: #ff00ff; color: #000; }
@@ -42,31 +28,24 @@
 <body>
 
 <div class="top-bar">
-    <div class="ticker">
-        <marquee scrollamount="6">🔥 BENVENUTI NEL REGNO 🔥 TUTTO SICURO E AGGIORNATO 🔥 YOUTUBE DJ ATTIVO 🔥</marquee>
-    </div>
-    
-    <a href="https://catbox.moe/" target="_blank" class="img-upload-btn">📸 FOTO RAPIDA</a>
-
-    <div class="visitor-counter">
-        👁️ <img src="https://www.cutercounter.com/hits.php?id=gvxpndp&nd=6&style=1" border="0" alt="visitor counter">
-    </div>
-
+    <div class="ticker"><marquee scrollamount="6">🔥 REGNO DI TIGROTTA - VERSIONE SICURA AGGIORNATA 🔥</marquee></div>
+    <a href="https://catbox.moe/" target="_blank" class="img-upload-btn">📸 FOTO</a>
+    <div class="visitor-counter">👁️ <img src="https://www.cutercounter.com/hits.php?id=gvxpndp&nd=6&style=1" border="0"></div>
     <div id="clock">00:00:00</div>
 </div>
 
 <div class="wrapper">
     <div class="col-left">
-        <div class="header" style="color:#ff00ff;">🔒 STANZA PRIVATA</div>
+        <div class="header" style="color:#ff00ff;">🔒 PRIVATO</div>
         <div class="input-bar">
             <input type="text" id="room-name" placeholder="Nome stanza...">
-            <button class="vai-btn" onclick="joinPrivate()">ENTRA</button>
+            <button class="vai-btn" onclick="joinPrivate()">VAI</button>
         </div>
         <iframe id="private-frame" src="about:blank"></iframe>
     </div>
 
     <div class="col-main">
-        <div class="header" style="color:#00f2ff;">🏟️ ARENA DARK MODE</div>
+        <div class="header" style="color:#00f2ff;">🏟️ ARENA DARK</div>
         <iframe src="https://www5.cbox.ws/box/?boxid=960938&boxtag=AP3Bo3"></iframe>
     </div>
 
@@ -74,7 +53,7 @@
         <div class="box-media">
             <div class="header" style="color:#00f2ff;">
                 📺 YOUTUBE DJ 
-                <button class="yt-btn" onclick="askYoutube()">+ CAMBIA VIDEO</button>
+                <button class="yt-btn" onclick="askYoutube()">+ CAMBIA</button>
             </div>
             <iframe id="yt-player" src="https://www.youtube.com/embed/21X5lGlDOfg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
@@ -93,18 +72,10 @@
     function askYoutube() {
         var url = prompt("Incolla link YouTube:");
         if (url) {
-            var id = "";
-            if (url.includes("v=")) {
-                id = url.split("v=")[1].split("&")[0];
-            } else if (url.includes("youtu.be/")) {
-                id = url.split("youtu.be/")[1].split("?")[0];
-            } else {
-                id = url.split("/").pop().split("?")[0];
-            }
+            var id = url.includes("v=") ? url.split("v=")[1].split("&")[0] : url.split("/").pop().split("?")[0];
             document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&enablejsapi=1";
         }
     }
 </script>
-
 </body>
 </html>
